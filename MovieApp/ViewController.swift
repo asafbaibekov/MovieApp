@@ -73,6 +73,7 @@ extension ViewController: UITableViewDataSource {
 				if let title = movie.title {
 					cell.titleLabel.text = title
 				}
+				cell.releaseYearLabel.text = "\(movie.releaseYear)"
 			}
 			return cell
 		}
