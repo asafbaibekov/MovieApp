@@ -11,6 +11,8 @@ import CoreData
 
 class ViewController: UIViewController {
 
+	var movies: [Movie]?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
 				}
 			}
 		}
+		self.movies = MovieCoreDataHandler.getMovies()
 	}
 
 
