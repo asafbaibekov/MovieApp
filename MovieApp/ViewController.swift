@@ -17,6 +17,11 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 		
+		fetchFromApiAndSave()
+		self.movies = MovieCoreDataHandler.getMovies()
+	}
+
+	func fetchFromApiAndSave() {
 		let url = URL(string: "https://api.androidhive.info/json/movies.json")!
 		if let data: Data = try? Data(contentsOf: url),
 			let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]),
@@ -32,9 +37,7 @@ class ViewController: UIViewController {
 				}
 			}
 		}
-		self.movies = MovieCoreDataHandler.getMovies()
 	}
-
 
 }
 
