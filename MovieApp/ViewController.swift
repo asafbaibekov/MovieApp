@@ -23,6 +23,9 @@ class ViewController: UIViewController {
 		
 		fetchFromApiAndSave()
 		self.movies = MovieCoreDataHandler.getMovies()
+		self.movies!.sort { (first, second) -> Bool in
+			return first.releaseYear < second.releaseYear
+		}
 	}
 
 	func fetchFromApiAndSave() {
