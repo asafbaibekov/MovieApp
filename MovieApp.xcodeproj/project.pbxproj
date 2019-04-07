@@ -14,6 +14,7 @@
 		2D62558B225A47FC003211BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D62558A225A47FC003211BF /* Assets.xcassets */; };
 		2D62558E225A47FC003211BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D62558C225A47FC003211BF /* LaunchScreen.storyboard */; };
 		2D625596225A6408003211BF /* MovieCoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D625595225A6408003211BF /* MovieCoreDataHandler.swift */; };
+		2D625599225A7E18003211BF /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D625598225A7E18003211BF /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		2D62558D225A47FC003211BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D62558F225A47FC003211BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D625595225A6408003211BF /* MovieCoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCoreDataHandler.swift; sourceTree = "<group>"; };
+		2D625598225A7E18003211BF /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				2D62558F225A47FC003211BF /* Info.plist */,
 				2D625587225A47FA003211BF /* MovieApp.xcdatamodeld */,
 				2D625595225A6408003211BF /* MovieCoreDataHandler.swift */,
+				2D625598225A7E18003211BF /* MovieTableViewCell.swift */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D625599225A7E18003211BF /* MovieTableViewCell.swift in Sources */,
 				2D625583225A47FA003211BF /* ViewController.swift in Sources */,
 				2D625596225A6408003211BF /* MovieCoreDataHandler.swift in Sources */,
 				2D625581225A47FA003211BF /* AppDelegate.swift in Sources */,
