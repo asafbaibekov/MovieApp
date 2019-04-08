@@ -17,26 +17,37 @@ class AddMovieViewController: UIViewController {
 		position: .back
 	)
 	var captureSession = AVCaptureSession()
+
+	@IBOutlet weak var qrView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 		captureSession = AVCaptureSession()
-		guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
-		if let videoInput = try? AVCaptureDeviceInput(device: videoCaptureDevice) {
+		if let videoCaptureDevice = AVCaptureDevice.default(for: .video),
+			let videoInput = try? AVCaptureDeviceInput(device: videoCaptureDevice) {
 			let metadataOutput = AVCaptureMetadataOutput()
 			captureSession.addInput(videoInput)
 			captureSession.addOutput(metadataOutput)
 			metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
 			metadataOutput.metadataObjectTypes = [.qr]
-			let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-			videoPreviewLayer.frame = view.layer.bounds
-			videoPreviewLayer.videoGravity = .resizeAspectFill
-			view.layer.addSublayer(videoPreviewLayer)
 			captureSession.startRunning()
 		} else {
 			failed(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.")
 		}
     }
+	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		if captureSession.isRunning {
+			let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+			videoPreviewLayer.frame = qrView.layer.bounds
+			videoPreviewLayer.videoGravity = .resizeAspectFill
+			qrView.layer.addSublayer(videoPreviewLayer)
+			qrView.layer.cornerRadius = min(qrView.bounds.height/4, qrView.bounds.width/4)
+			qrView.layer.masksToBounds = true
+		}
+	}
 	
 	func failed(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil) {
 		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)

@@ -109,10 +109,27 @@
                     <view key="view" contentMode="scaleToFill" id="Dot-NN-bkv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILS-Bu-HaC">
+                                <rect key="frame" x="52" y="293" width="310.5" height="310.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ILS-Bu-HaC" secondAttribute="height" id="kTY-i8-14Z"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ILS-Bu-HaC" firstAttribute="width" secondItem="Dot-NN-bkv" secondAttribute="width" multiplier="3:4" id="3ML-zM-wT9"/>
+                            <constraint firstItem="ILS-Bu-HaC" firstAttribute="centerY" secondItem="Dot-NN-bkv" secondAttribute="centerY" id="Kpf-L7-oWG"/>
+                            <constraint firstItem="ILS-Bu-HaC" firstAttribute="centerX" secondItem="Dot-NN-bkv" secondAttribute="centerX" id="xA5-v9-BrK"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Zk-j4-n32"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Movie" id="g28-iP-sLX"/>
+                    <connections>
+                        <outlet property="qrView" destination="ILS-Bu-HaC" id="8Si-fh-SZz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4xO-g1-Gwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
