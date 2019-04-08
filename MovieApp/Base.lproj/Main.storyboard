@@ -117,11 +117,22 @@
                                     <constraint firstAttribute="width" secondItem="ILS-Bu-HaC" secondAttribute="height" id="kTY-i8-14Z"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR Here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfV-aa-Iv9">
+                                <rect key="frame" x="116.5" y="232" width="181" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ILS-Bu-HaC" firstAttribute="width" secondItem="Dot-NN-bkv" secondAttribute="width" multiplier="3:4" id="3ML-zM-wT9"/>
+                            <constraint firstItem="WfV-aa-Iv9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Zk-j4-n32" secondAttribute="leading" constant="8" id="5JX-sg-oS8"/>
+                            <constraint firstItem="WfV-aa-Iv9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Zk-j4-n32" secondAttribute="top" constant="8" id="5a1-dN-LIT"/>
+                            <constraint firstItem="6Zk-j4-n32" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WfV-aa-Iv9" secondAttribute="trailing" constant="8" id="C9m-Fx-Crb"/>
                             <constraint firstItem="ILS-Bu-HaC" firstAttribute="centerY" secondItem="Dot-NN-bkv" secondAttribute="centerY" id="Kpf-L7-oWG"/>
+                            <constraint firstItem="ILS-Bu-HaC" firstAttribute="top" secondItem="WfV-aa-Iv9" secondAttribute="bottom" constant="25" id="OF1-pT-Kz9"/>
+                            <constraint firstItem="WfV-aa-Iv9" firstAttribute="centerX" secondItem="Dot-NN-bkv" secondAttribute="centerX" id="aiI-O8-ku8"/>
                             <constraint firstItem="ILS-Bu-HaC" firstAttribute="centerX" secondItem="Dot-NN-bkv" secondAttribute="centerX" id="xA5-v9-BrK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Zk-j4-n32"/>
