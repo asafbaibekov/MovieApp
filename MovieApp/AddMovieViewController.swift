@@ -33,7 +33,9 @@ class AddMovieViewController: UIViewController {
 			metadataOutput.metadataObjectTypes = [.qr]
 			captureSession.startRunning()
 		} else {
-			failed(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.")
+			failed(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.") { (_) in
+				self.navigationController?.popViewController(animated: true)
+			}
 		}
     }
 	
