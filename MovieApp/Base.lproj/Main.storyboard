@@ -87,7 +87,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movies" id="v6Y-Fa-VaB"/>
+                    <navigationItem key="navigationItem" title="Movies" id="v6Y-Fa-VaB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="h5V-Lb-Zq8"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="C4C-J7-fol" id="Pia-hX-byE"/>
                     </connections>
