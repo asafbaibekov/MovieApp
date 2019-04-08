@@ -88,7 +88,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="v6Y-Fa-VaB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="h5V-Lb-Zq8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="h5V-Lb-Zq8">
+                            <connections>
+                                <segue destination="C5U-AB-UeZ" kind="show" id="k95-AU-dfM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="C4C-J7-fol" id="Pia-hX-byE"/>
@@ -97,6 +101,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="852.17391304347836" y="109.82142857142857"/>
+        </scene>
+        <!--Add Movie-->
+        <scene sceneID="neZ-c8-Tmr">
+            <objects>
+                <viewController id="C5U-AB-UeZ" customClass="AddMovieViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dot-NN-bkv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="6Zk-j4-n32"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Movie" id="g28-iP-sLX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xO-g1-Gwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1768" y="110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g0B-n4-We6">
