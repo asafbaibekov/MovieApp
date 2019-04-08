@@ -7,24 +7,68 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AddMovieViewController: UIViewController {
 
+	let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(
+		deviceTypes: [.builtInDualCamera],
+		mediaType: AVMediaType.video,
+		position: .back
+	)
+	var captureSession = AVCaptureSession()
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+		captureSession = AVCaptureSession()
+		guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+		if let videoInput = try? AVCaptureDeviceInput(device: videoCaptureDevice) {
+			let metadataOutput = AVCaptureMetadataOutput()
+			captureSession.addInput(videoInput)
+			captureSession.addOutput(metadataOutput)
+			metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+			metadataOutput.metadataObjectTypes = [.qr]
+			let videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+			videoPreviewLayer.frame = view.layer.bounds
+			videoPreviewLayer.videoGravity = .resizeAspectFill
+			view.layer.addSublayer(videoPreviewLayer)
+			captureSession.startRunning()
+		} else {
+			failed(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.")
+		}
     }
-    
+	
+	func failed(title: String, message: String, handler: ((UIAlertAction) -> Void)? = nil) {
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: handler))
+		present(alertController, animated: true)
+	}
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+extension AddMovieViewController: AVCaptureMetadataOutputObjectsDelegate {
+	func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+		captureSession.stopRunning()
+		guard let metadataObject = metadataObjects.first,
+			let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject,
+			let stringValue = readableObject.stringValue else {
+				self.navigationController?.popViewController(animated: true)
+				return
+		}
+		AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+		if let data = stringValue.data(using: .utf8),
+			let json = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]) as? [String: Any],
+			let title = json["title"] as? String,
+			let image = json["image"] as? String,
+			let imageURL = URL(string: image),
+			let rating = json["rating"] as? Double,
+			let releaseYear = json["releaseYear"] as? Int16,
+			let genre = json["genre"] as? [String] {
+			MovieCoreDataHandler.saveObeject(title: title, image: imageURL, rating: rating, releaseYear: releaseYear, genre: genre)
+			self.navigationController?.popViewController(animated: true)
+		} else {
+			failed(title: "QR not supported", message: "this qr code is not including movie data") { (alertAction) in
+				self.captureSession.startRunning()
+			}
+		}
+	}
 }

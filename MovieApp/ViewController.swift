@@ -22,10 +22,15 @@ class ViewController: UIViewController {
 		// Do any additional setup after loading the view.
 		
 		fetchFromApiAndSave()
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		self.movies = MovieCoreDataHandler.getMovies()
 		self.movies!.sort { (first, second) -> Bool in
 			return first.releaseYear < second.releaseYear
 		}
+		self.tableView.reloadData()
 	}
 
 	func fetchFromApiAndSave() {
