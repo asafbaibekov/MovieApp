@@ -18,6 +18,7 @@
 		2D62559B225B85A8003211BF /* AddMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D62559A225B85A8003211BF /* AddMovieViewController.swift */; };
 		2D62559F225BF75F003211BF /* ViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D62559E225BF75F003211BF /* ViewController+UITableViewDataSource.swift */; };
 		2D6255A1225BF7C8003211BF /* AddMovieViewController+AVCaptureMetadataOutputObjectsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6255A0225BF7C8003211BF /* AddMovieViewController+AVCaptureMetadataOutputObjectsDelegate.swift */; };
+		2DC4A5FC22899DC400E40005 /* MovieJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC4A5FB22899DC400E40005 /* MovieJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		2D62559A225B85A8003211BF /* AddMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieViewController.swift; sourceTree = "<group>"; };
 		2D62559E225BF75F003211BF /* ViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		2D6255A0225BF7C8003211BF /* AddMovieViewController+AVCaptureMetadataOutputObjectsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddMovieViewController+AVCaptureMetadataOutputObjectsDelegate.swift"; sourceTree = "<group>"; };
+		2DC4A5FB22899DC400E40005 /* MovieJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				2D62558C225A47FC003211BF /* LaunchScreen.storyboard */,
 				2D62558F225A47FC003211BF /* Info.plist */,
 				2D625587225A47FA003211BF /* MovieApp.xcdatamodeld */,
+				2DC4A5FB22899DC400E40005 /* MovieJSON.swift */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			files = (
 				2D62559F225BF75F003211BF /* ViewController+UITableViewDataSource.swift in Sources */,
 				2D625599225A7E18003211BF /* MovieTableViewCell.swift in Sources */,
+				2DC4A5FC22899DC400E40005 /* MovieJSON.swift in Sources */,
 				2D625583225A47FA003211BF /* ViewController.swift in Sources */,
 				2D6255A1225BF7C8003211BF /* AddMovieViewController+AVCaptureMetadataOutputObjectsDelegate.swift in Sources */,
 				2D625596225A6408003211BF /* MovieCoreDataHandler.swift in Sources */,

@@ -27,26 +27,16 @@ class ViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		self.movies = MovieCoreDataHandler.getMovies()
-		self.movies!.sort { (first, second) -> Bool in
-			return first.releaseYear < second.releaseYear
-		}
+		self.movies!.sort(by: { $0.releaseYear < $1.releaseYear })
 		self.tableView.reloadData()
 	}
 
 	func fetchFromApiAndSave() {
 		let url = URL(string: "https://api.androidhive.info/json/movies.json")!
-		if let data: Data = try? Data(contentsOf: url),
-			let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [.allowFragments]),
-			let jsonArray = jsonResponse as? [[String: Any]] {
+		let decoder = JSONDecoder()
+		if let data: Data = try? Data(contentsOf: url), let movies = try? decoder.decode([MovieJSON].self, from: data) {
 			if MovieCoreDataHandler.cleanDelete() {
-				jsonArray.forEach { (item) in
-					let title = item["title"] as! String
-					let image = URL(string: item["image"] as! String)!
-					let rating = item["rating"] as! Double
-					let releaseYear = item["releaseYear"] as! Int16
-					let genre = item["genre"] as! [String]
-					MovieCoreDataHandler.saveObeject(title: title, image: image, rating: rating, releaseYear: releaseYear, genre: genre)
-				}
+				movies.forEach { MovieCoreDataHandler.saveObeject(movie: $0) }
 			}
 		}
 	}

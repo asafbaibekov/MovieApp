@@ -15,18 +15,17 @@ class MovieCoreDataHandler {
 		return delegate.persistentContainer.viewContext
 	}
 
-	class func saveObeject(title: String, image: URL, rating: Double, releaseYear: Int16, genre: [String]) {
-
+	class func saveObeject(movie: MovieJSON) {
 		let context = getContext()
 		let entity = NSEntityDescription.entity(forEntityName: "Movie", in: context)!
 
 		let manageObject = NSManagedObject(entity: entity, insertInto: context)
 
-		manageObject.setValue(title, forKey: "title")
-		manageObject.setValue(image, forKey: "image")
-		manageObject.setValue(rating, forKey: "rating")
-		manageObject.setValue(releaseYear, forKey: "releaseYear")
-		manageObject.setValue(genre, forKey: "genre")
+		manageObject.setValue(movie.title, forKey: "title")
+		manageObject.setValue(movie.image, forKey: "image")
+		manageObject.setValue(movie.rating, forKey: "rating")
+		manageObject.setValue(movie.releaseYear, forKey: "releaseYear")
+		manageObject.setValue(movie.genre, forKey: "genre")
 
 		do {
 			try context.save()
