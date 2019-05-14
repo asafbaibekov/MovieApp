@@ -37,20 +37,14 @@ class MovieCoreDataHandler {
 	class func getMovies() -> [Movie]? {
 		let contecxt = getContext()
 		let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
-		if let movies = try? contecxt.fetch(fetchRequest) {
-			return movies
-		}
-		return nil
+		return try? contecxt.fetch(fetchRequest)
 	}
 	
 	class func getMovie(title: String) -> [Movie]? {
 		let contecxt = getContext()
 		let fetchRequest: NSFetchRequest<Movie> = Movie.fetchRequest()
 		fetchRequest.predicate = NSPredicate(format: "title LIKE[cd] %@", title)
-		if let movie = try? contecxt.fetch(fetchRequest) {
-			return movie
-		}
-		return nil
+		return try? contecxt.fetch(fetchRequest)
 	}
 
 	class func deleteObject(movie: Movie) -> Bool {
