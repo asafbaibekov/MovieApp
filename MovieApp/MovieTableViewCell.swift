@@ -10,6 +10,8 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
 
+	var imageURL: URL!
+
 	@IBOutlet weak var movieImageView: UIImageView!
 	
 	@IBOutlet weak var titleLabel: UILabel!

@@ -35,4 +35,14 @@ class ApiHandler {
 			}
 		}.resume()
 	}
+
+	func fetchImage(url: URL, complition: @escaping (UIImage) -> Void) {
+		DispatchQueue.global().async {
+			if let data: Data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+				DispatchQueue.main.async {
+					complition(image)
+				}
+			}
+		}
+	}
 }

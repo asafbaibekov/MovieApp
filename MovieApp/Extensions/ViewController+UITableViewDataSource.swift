@@ -18,18 +18,16 @@ extension ViewController: UITableViewDataSource {
 			if let movies = movies {
 				let movie = movies[indexPath.row]
 				if let imageURL = movie.image {
+					cell.imageURL = imageURL
 					if let image = self.imageCache.object(forKey: imageURL.absoluteString as NSString) {
 						cell.movieImageView.image = image
 					} else {
 						cell.movieImageView.image = nil
-						DispatchQueue.global().async {
-							if let data: Data = try? Data(contentsOf: imageURL),
-								let image = UIImage(data: data) {
-								self.imageCache.setObject(image, forKey: imageURL.absoluteString as NSString)
-								DispatchQueue.main.async {
-									cell.movieImageView.image = image
-								}
+						ApiHandler.shared.fetchImage(url: imageURL) { (image) in
+							if imageURL.absoluteString == cell.imageURL.absoluteString {
+								cell.movieImageView.image = image
 							}
+							self.imageCache.setObject(image, forKey: imageURL.absoluteString as NSString)
 						}
 					}
 				}
