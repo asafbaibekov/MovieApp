@@ -20,26 +20,23 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
-		
-		fetchFromApiAndSave()
+		ApiHandler.shared.fetchMovies (complition: { (movies) in
+			if MovieCoreDataHandler.cleanDelete() {
+				movies.forEach { MovieCoreDataHandler.saveObeject(movie: $0) }
+				self.refreshMovies()
+			}
+		})
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		refreshMovies()
+	}
+
+	func refreshMovies() {
 		self.movies = MovieCoreDataHandler.getMovies()
 		self.movies!.sort(by: { $0.releaseYear < $1.releaseYear })
 		self.tableView.reloadData()
 	}
-
-	func fetchFromApiAndSave() {
-		let url = URL(string: "https://api.androidhive.info/json/movies.json")!
-		let decoder = JSONDecoder()
-		if let data: Data = try? Data(contentsOf: url), let movies = try? decoder.decode([MovieJSON].self, from: data) {
-			if MovieCoreDataHandler.cleanDelete() {
-				movies.forEach { MovieCoreDataHandler.saveObeject(movie: $0) }
-			}
-		}
-	}
-
 }
 
