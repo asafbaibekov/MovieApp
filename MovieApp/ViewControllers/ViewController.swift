@@ -42,3 +42,12 @@ class ViewController: UIViewController {
 	}
 }
 
+extension ViewController: UITableViewDataSource {
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return self.movies?.count ?? 0
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+	}
+}
