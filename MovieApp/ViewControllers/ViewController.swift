@@ -21,7 +21,6 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
 		ApiHandler.shared.fetchMovies (complition: { (movies) in
 			if MovieCoreDataHandler.cleanDelete() {
 				movies.forEach { MovieCoreDataHandler.saveObeject(movie: $0) }
@@ -48,6 +47,14 @@ extension ViewController: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		return tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+		guard let movies = movies else { return UITableViewCell() }
+		var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)
+		if cell == nil {
+			cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
+		}
+		let movie = movies[indexPath.row]
+		cell.textLabel?.text = movie.title
+		cell.detailTextLabel?.text = "\(movie.releaseYear)"
+		return cell
 	}
 }
