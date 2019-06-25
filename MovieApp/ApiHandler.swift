@@ -21,15 +21,13 @@ class ApiHandler {
 	func fetchMovies(complition: @escaping ([MovieJSON]) -> Void, failure: ((Error) -> Void)? = nil) {
 		URLSession.shared.dataTask(with: url) { (data, response, error) in
 			DispatchQueue.main.async {
-				if let error = error, let failure = failure {
-					failure(error)
+				if let error = error {
+					failure?(error)
 				} else if let data = data {
 					do {
 						complition(try JSONDecoder().decode([MovieJSON].self, from: data))
 					} catch {
-						if let failure = failure {
-							failure(error)
-						}
+						failure?(error)
 					}
 				}
 			}
