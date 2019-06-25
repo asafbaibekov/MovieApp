@@ -17,9 +17,11 @@ class ViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 
+	let reuseIdentifier = "movie cell"
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
 		ApiHandler.shared.fetchMovies (complition: { (movies) in
 			if MovieCoreDataHandler.cleanDelete() {
 				movies.forEach { MovieCoreDataHandler.saveObeject(movie: $0) }
