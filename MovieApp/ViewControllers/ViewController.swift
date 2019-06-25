@@ -11,8 +11,6 @@ import CoreData
 
 class ViewController: UIViewController {
 
-	let imageCache = NSCache<NSString, UIImage>()
-
 	var movies: [Movie]?
 
 	@IBOutlet weak var tableView: UITableView!
@@ -55,6 +53,14 @@ extension ViewController: UITableViewDataSource {
 		let movie = movies[indexPath.row]
 		cell.textLabel?.text = movie.title
 		cell.detailTextLabel?.text = "\(movie.releaseYear)"
+		if let image = movie.imageData {
+			cell.imageView?.image = UIImage(data: image)
+		} else {
+			cell.imageView?.image = nil
+			ImageDownloader.addOperation(movie: movie, indexPath: indexPath) { [unowned self] indexPath in
+				self.tableView.reloadRows(at: [indexPath], with: .fade)
+			}
+		}
 		return cell
 	}
 }
